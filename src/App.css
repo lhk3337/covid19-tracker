@@ -29,7 +29,7 @@ body {
     flex-direction: column;
   }
 }
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 610px) {
   .app__stats {
     flex-direction: column;
   }

@@ -8,12 +8,15 @@ import {
 } from "@material-ui/core";
 import InfoBox from "./InfoBox";
 import Map from "./Map";
+import Table from "./Table";
 import "./App.css";
+import { sortData } from "./util";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
+  const [tableData, setTableData] = useState([]);
 
   // STATE = How to write a variable in REACT <<<<<<<<
 
@@ -42,6 +45,8 @@ function App() {
             name: country.country, // S. Korea, United States, United Kingdom
             value: country.countryInfo.iso2, //KR, USA, UK
           }));
+          const sortedData = sortData(data);
+          setTableData(sortedData);
           setCountries(countries);
         });
     };
@@ -65,7 +70,7 @@ function App() {
       });
   };
 
-  console.log("Country Info", countryInfo); //object 출력
+  // console.log("Country Info", countryInfo); //object 출력
   // console.log(typeof `Country Info ${countryInfo}`); //Country Info [object Object] // template literal retruns a string.
 
   return (
@@ -116,6 +121,7 @@ function App() {
       <Card className="app__right">
         <CardContent>
           <h3>Live Cases by Country</h3>
+          <Table countries={tableData} />
           {/* Table */}
           <h3>Worldwide new cases</h3>
           {/* Graph */}
