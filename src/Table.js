@@ -3,9 +3,14 @@ import "./Table.css";
 function Table({ countries }) {
   return (
     <div className="table">
-      {countries.map(({ country, cases }) => (
+      {countries.map(({ countryInfo, country, cases }) => (
         <tr>
-          <td>{country}</td>
+          <td>
+            <img src={countryInfo.flag}></img>
+          </td>
+          <td>
+            <p>{country}</p>
+          </td>
           <td>
             <strong>{cases}</strong>
           </td>

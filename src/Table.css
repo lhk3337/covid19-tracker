@@ -1,7 +1,8 @@
 .table {
   margin-top: 20px;
+  margin-bottom: 20px;
   overflow: scroll;
-  height: 400px;
+  height: 500px;
   color: #6a5d5d;
 }
 
@@ -12,6 +13,13 @@
 .table td {
   padding: 0.5rem;
 }
+.table p {
+  text-align: center;
+}
 .table tr:nth-of-type(odd) {
   background-color: #f3f2f8;
+}
+.table img {
+  width: 64px;
+  height: 38px;
 }
