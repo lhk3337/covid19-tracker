@@ -13,7 +13,6 @@ import "./style/App.css";
 import { sortData, prettyPrintStat } from "./util";
 import LineGraph from "./LineGraph";
 import "leaflet/dist/leaflet.css";
-
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
@@ -26,7 +25,6 @@ function App() {
   const [mapZoom, setMapZoom] = useState(5);
   const [mapCountries, setMapCountries] = useState([]);
   const [casesType, setCasesType] = useState("cases");
-  console.log(casesType);
   // STATE = How to write a variable in REACT <<<<<<<<
 
   // https://disease.sh/v3/covid-19/countries
@@ -36,7 +34,7 @@ function App() {
   // based on a given condition
 
   useEffect(() => {
-    fetch("http://disease.sh/v3/covid-19/all")
+    fetch("https://disease.sh/v3/covid-19/all")
       .then((response) => response.json())
       .then((data) => {
         setCountryInfo(data);
