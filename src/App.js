@@ -10,7 +10,7 @@ import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table";
 import "./style/App.css";
-import { sortData } from "./util";
+import { sortData, prettyPrintStat } from "./util";
 import LineGraph from "./LineGraph";
 import "leaflet/dist/leaflet.css";
 
@@ -85,7 +85,7 @@ function App() {
     <div className="app">
       <div className="app__left">
         <div className="app__header">
-          <h1>Covid-19 현황</h1>
+          <h1>Corona-Virus 추적 시스템</h1>
           <FormControl className="app__dropdown">
             {/* Title + Select input drowdown field */}
             <Select
@@ -107,19 +107,19 @@ function App() {
         <div className="app__stats">
           <InfoBox
             title="확진자"
-            total={countryInfo.cases}
-            cases={countryInfo.todayCases}
+            total={prettyPrintStat(countryInfo.cases)}
+            cases={prettyPrintStat(countryInfo.todayCases)}
           />
           <InfoBox
             title="완치자"
-            cases={countryInfo.todayRecovered}
-            total={countryInfo.recovered}
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            total={prettyPrintStat(countryInfo.recovered)}
           />
 
           <InfoBox
             title="사망자"
-            cases={countryInfo.todayDeaths}
-            total={countryInfo.deaths}
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={prettyPrintStat(countryInfo.deaths)}
           />
         </div>
 
