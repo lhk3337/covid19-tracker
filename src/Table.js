@@ -1,5 +1,7 @@
 import React from "react";
 import "./style/Table.css";
+import numeral from "numeral";
+
 function Table({ countries }) {
   return (
     <div className="table">
@@ -12,7 +14,7 @@ function Table({ countries }) {
             <p>{country}</p>
           </td>
           <td>
-            <strong>{cases}</strong>
+            <strong>{numeral(cases).format("0,0")}</strong>
           </td>
         </tr>
       ))}

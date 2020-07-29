@@ -25,6 +25,8 @@ function App() {
   });
   const [mapZoom, setMapZoom] = useState(5);
   const [mapCountries, setMapCountries] = useState([]);
+  const [casesType, setCasesType] = useState("cases");
+  console.log(casesType);
   // STATE = How to write a variable in REACT <<<<<<<<
 
   // https://disease.sh/v3/covid-19/countries
@@ -106,17 +108,26 @@ function App() {
         </div>
         <div className="app__stats">
           <InfoBox
+            isOrange
+            active={casesType === "cases"}
+            onClick={(e) => setCasesType("cases")}
             title="확진자"
             total={prettyPrintStat(countryInfo.cases)}
             cases={prettyPrintStat(countryInfo.todayCases)}
           />
           <InfoBox
+            isGreen
+            active={casesType === "recovered"}
+            onClick={(e) => setCasesType("recovered")}
             title="완치자"
             cases={prettyPrintStat(countryInfo.todayRecovered)}
             total={prettyPrintStat(countryInfo.recovered)}
           />
 
           <InfoBox
+            isRed
+            active={casesType === "deaths"}
+            onClick={(e) => setCasesType("deaths")}
             title="사망자"
             cases={prettyPrintStat(countryInfo.todayDeaths)}
             total={prettyPrintStat(countryInfo.deaths)}
@@ -124,15 +135,20 @@ function App() {
         </div>
 
         {/* Map */}
-        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
+        <Map
+          casesType={casesType}
+          countries={mapCountries}
+          center={mapCenter}
+          zoom={mapZoom}
+        />
       </div>
       <Card className="app__right">
         <CardContent className="container">
-          <h3>국가별 확진자 리스트</h3>
+          <h3>Live cases by Country</h3>
           <Table countries={tableData} />
           {/* Table */}
-          <h3>새로운 확진자 추이</h3>
-          <LineGraph />
+          <h3>Worldwide new {casesType}</h3>
+          <LineGraph className="app__graph" casesType={casesType} />
           {/* Graph */}
         </CardContent>
       </Card>
