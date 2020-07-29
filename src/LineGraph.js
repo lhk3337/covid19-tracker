@@ -49,7 +49,7 @@ const options = {
 const buildChartData = (data, casesType) => {
   let chartData = [];
   let lastDataPoint;
-  console.log(data);
+
   for (let date in data.cases) {
     if (lastDataPoint) {
       let newDataPoint = {
