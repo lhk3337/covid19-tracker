@@ -38,6 +38,9 @@ body {
   .map {
     margin-bottom: 30px;
   }
+  .table {
+    height: 400px;
+  }
 }
 @media screen and (max-width: 610px) {
   .app {
@@ -54,5 +57,8 @@ body {
   }
   .map {
     margin-bottom: 30px;
+  }
+  .table {
+    height: 400px;
   }
 }
