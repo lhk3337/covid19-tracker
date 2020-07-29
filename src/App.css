@@ -8,7 +8,7 @@ body {
 .app {
   display: flex;
   justify-content: space-evenly;
-  padding: 20px;
+  padding: 20px 0px;
 }
 .app__header {
   display: flex;
@@ -24,16 +24,35 @@ body {
   display: flex;
   justify-content: space-between;
 }
+.app__right {
+  width: 400px;
+}
 @media screen and (max-width: 990px) {
   .app {
     flex-direction: column;
+    padding: 20px;
+  }
+  .app__right {
+    width: 100%;
+  }
+  .map {
+    margin-bottom: 30px;
   }
 }
 @media screen and (max-width: 610px) {
+  .app {
+    padding: 20px;
+  }
   .app__stats {
     flex-direction: column;
   }
   .app__stats .infoBox {
     margin-bottom: 20px;
+  }
+  .app__right {
+    width: 100%;
+  }
+  .map {
+    margin-bottom: 30px;
   }
 }
