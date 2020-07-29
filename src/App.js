@@ -12,13 +12,19 @@ import Table from "./Table";
 import "./App.css";
 import { sortData } from "./util";
 import LineGraph from "./LineGraph";
+import "leaflet/dist/leaflet.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
   const [country, setCountry] = useState("worldwide");
   const [countryInfo, setCountryInfo] = useState({});
   const [tableData, setTableData] = useState([]);
-
+  const [mapCenter, setMapCenter] = useState({
+    lat: 36.596958,
+    lng: 127.877083,
+  });
+  const [mapZoom, setMapZoom] = useState(5);
+  const [mapCountries, setMapCountries] = useState([]);
   // STATE = How to write a variable in REACT <<<<<<<<
 
   // https://disease.sh/v3/covid-19/countries
@@ -48,6 +54,7 @@ function App() {
           }));
           const sortedData = sortData(data);
           setTableData(sortedData);
+          setMapCountries(data);
           setCountries(countries);
         });
     };
@@ -68,12 +75,12 @@ function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
       });
   };
-
   // console.log("Country Info", countryInfo); //object 출력
   // console.log(typeof `Country Info ${countryInfo}`); //Country Info [object Object] // template literal retruns a string.
-
   return (
     <div className="app">
       <div className="app__left">
@@ -108,7 +115,7 @@ function App() {
             cases={countryInfo.todayRecovered}
             total={countryInfo.recovered}
           />
-          <InfoBox title="치료중" total={countryInfo.active} />
+
           <InfoBox
             title="사망자"
             cases={countryInfo.todayDeaths}
@@ -117,14 +124,14 @@ function App() {
         </div>
 
         {/* Map */}
-        <Map />
+        <Map countries={mapCountries} center={mapCenter} zoom={mapZoom} />
       </div>
       <Card className="app__right">
-        <CardContent>
-          <h3>Live Cases by Country</h3>
+        <CardContent className="container">
+          <h3>국가별 확진자 리스트</h3>
           <Table countries={tableData} />
           {/* Table */}
-          <h3>Worldwide new cases</h3>
+          <h3>새로운 확진자 추이</h3>
           <LineGraph />
           {/* Graph */}
         </CardContent>
